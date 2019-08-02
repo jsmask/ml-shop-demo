@@ -1,25 +1,49 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from 'views/Home.vue'
+import Sort from 'views/Sort.vue'
+import Cart from 'views/Cart.vue'
+import Profile from 'views/Profile.vue'
+import NotFound from 'views/NotFound.vue'
+import GoodsInfo from 'views/GoodsInfo.vue'
+import Test from 'views/Test'
 
 Vue.use(Router)
 
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+const route = new Router({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [{
+        path: '/',
+        redirect: "/home"
+    }, {
+        path: '/home',
+        name: 'home',
+        component: Home
+    }, {
+        path: '/sort',
+        name: 'sort',
+        component: Sort
+    }, {
+        path: '/cart',
+        name: 'cart',
+        component: Cart
+    }, {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
+    }, {
+        path: "/goodsinfo",
+        name: "goodsinfo",
+        component: GoodsInfo,
+    }, {
+        path: '/test',
+        component: Test
+    }, {
+        path: "*",
+        name: "404",
+        component: NotFound
+    }]
 })
+
+export default route;
